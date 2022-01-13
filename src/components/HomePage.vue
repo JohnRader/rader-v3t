@@ -4,13 +4,6 @@ import {
   VContainer, VCardActions, VCard, VRow, VCol, VCardTitle, VImg, VIcon,
 } from 'vuetify/lib/components/index'
 
-interface Player {
-  name: string,
-  team: string,
-  position: string,
-  stats: string,
-}
-
 @Options({
   components: {
     VImg,

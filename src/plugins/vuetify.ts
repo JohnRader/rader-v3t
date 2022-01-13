@@ -1,5 +1,6 @@
 import { createVuetify } from 'vuetify'
 
+// TODO: move vuetify theme overrides to variables.scss
 export const vuetify = createVuetify({
   theme: {
     themes: {
