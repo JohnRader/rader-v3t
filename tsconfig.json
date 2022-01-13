@@ -10,7 +10,6 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "types": ["node", "vuetify"],
     "lib": ["esnext", "dom"],
     "baseUrl": ".",
     "paths": {
