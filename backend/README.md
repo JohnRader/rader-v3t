@@ -1,7 +1,8 @@
-# Backend
+# Backend development
 
-# Init and Install
-    poetry install
+* Enter the project directory, install the NPM packages and start the live server using the `npm` scripts:
 
-# Run
-    uvicorn backend.src.main:app --reload
+```bash
+poetry install
+uvicorn backend.src.main:app --reload
+```
