@@ -1,8 +1,8 @@
 <script lang="ts">
-import { Vue, Options } from 'vue-class-component'
-import { 
+import { Vue, Options } from 'vue-class-component';
+import {
   VContainer, VCardActions, VCard, VRow, VCol, VCardTitle, VImg, VIcon,
-} from 'vuetify/lib/components/index'
+} from 'vuetify/lib/components/index';
 
 @Options({
   components: {
@@ -14,26 +14,21 @@ import {
     VContainer,
     VCardTitle,
     VCardActions,
-  }
+  },
 })
-export default class HomePage extends Vue {
-  
-}
+export default class HomePage extends Vue {}
 </script>
 
 <template>
   <VContainer>
     <VRow class="pt-12">
       <VCol cols="9">
-        <VCard class="main-content">
-        </VCard>
+        <VCard class="main-content" />
       </VCol>
       <VCol>
-        <VCard class="side-bar">
-        </VCard>
+        <VCard class="side-bar" />
       </VCol>
     </VRow>
-    
   </VContainer>
 </template>
 

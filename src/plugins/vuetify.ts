@@ -1,16 +1,15 @@
-import { createVuetify } from 'vuetify'
+import { createVuetify } from 'vuetify';
 
-// TODO: move vuetify theme overrides to variables.scss
-export const vuetify = createVuetify({
+const vuetify = createVuetify({
   theme: {
     themes: {
       light: {
         colors: {
-          surface: '#272724',
-          background: '#424242',
+          surface: '#424242',
+          background: '#616161',
           primary: '#1976D2',
           secondary: '#424242',
-          accent: '#82B1FF',
+          accent: '#212121',
           error: '#FF5252',
           info: '#2196F3',
           success: '#4CAF50',
@@ -21,11 +20,11 @@ export const vuetify = createVuetify({
       },
       dark: {
         colors: {
-          surface: '#2196F3',
-          background: '#424242',
-          primary: '#2196F3',
+          surface: '#424242',
+          background: '#616161',
+          primary: '#1976D2',
           secondary: '#424242',
-          accent: '#FF4081',
+          accent: '#212121',
           error: '#FF5252',
           info: '#2196F3',
           success: '#4CAF50',
@@ -37,3 +36,5 @@ export const vuetify = createVuetify({
     },
   },
 });
+
+export default vuetify;
