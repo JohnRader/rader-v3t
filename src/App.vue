@@ -1,9 +1,9 @@
 <script lang="ts">
-import { Vue, Options } from 'vue-class-component'
-import { VApp, VMain } from 'vuetify/lib/components/index'
+import { Vue, Options } from 'vue-class-component';
+import { VApp, VMain } from 'vuetify/lib/components/index';
 
-import HomePage from './components/HomePage.vue'
-import SiteHeader from './components/SiteHeader.vue'
+import HomePage from './components/HomePage.vue';
+import SiteHeader from './components/SiteHeader.vue';
 
 @Options({
   components: {
@@ -11,7 +11,7 @@ import SiteHeader from './components/SiteHeader.vue'
     VMain,
     HomePage,
     SiteHeader,
-  }
+  },
 })
 export default class App extends Vue {}
 </script>

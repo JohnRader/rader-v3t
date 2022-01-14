@@ -1,2 +1,7 @@
 # Backend
-uvicorn backend.src.main:app --reload
+
+# Init and Install
+    poetry install
+
+# Run
+    uvicorn backend.src.main:app --reload

@@ -1,6 +1,8 @@
 <script lang="ts">
-import { Vue, Options } from 'vue-class-component'
-import { VAppBar, VAppBarNavIcon, VTextField, VIcon, VBtn} from 'vuetify/lib/components/index'
+import { Vue, Options } from 'vue-class-component';
+import {
+  VAppBar, VAppBarNavIcon, VTextField, VIcon, VBtn,
+} from 'vuetify/lib/components/index';
 
 @Options({
   components: {
@@ -9,14 +11,16 @@ import { VAppBar, VAppBarNavIcon, VTextField, VIcon, VBtn} from 'vuetify/lib/com
     VAppBar,
     VTextField,
     VAppBarNavIcon,
-  }
+  },
 })
 export default class SiteHeader extends Vue {}
 </script>
 
 <template>
   <VAppBar app>
-    <VAppBarNavIcon />
+    <VBtn icon>
+      <VIcon>mdi-home-circle</VIcon>
+    </VBtn>
     <div class="header-controls">
       <VBtn icon>
         <VIcon>mdi-magnify</VIcon>
@@ -31,9 +35,9 @@ export default class SiteHeader extends Vue {}
   </VAppBar>
 </template>
 
- <style lang="scss">
- .v-app-bar__content {
+<style lang="scss">
+.v-app-bar__content {
     align-items: center;
     justify-content: space-between;
- }
- </style>
+}
+</style>

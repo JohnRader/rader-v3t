@@ -1,7 +1,7 @@
-import { createApp } from 'vue'
-import { vuetify } from './plugins/vuetify'
-import App from './App.vue'
+import { createApp } from 'vue';
+import vuetify from './plugins/vuetify';
+import App from './App.vue';
 
-const app = createApp(App)
+const app = createApp(App);
 
-app.use(vuetify).mount('#app')
+app.use(vuetify).mount('#app');

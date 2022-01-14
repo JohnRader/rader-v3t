@@ -2,6 +2,10 @@
 @import '@mdi/font/css/materialdesignicons.css';
 @import "@fontsource/inter";
 
+body {
+  background-color: #616161;
+}
+
 .v-application {
   font-family: $font-family;
 }
