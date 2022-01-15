@@ -277,7 +277,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "7c17e4c785cfa027dc990347840c6e3690117222d39ccf0185f2bc399aa26c93"
+content-hash = "a26d76b9ba3506d2491a36fc860455c0e110c5fbebd6e285bb6dd364e154e08d"
 
 [metadata.files]
 anyio = [
