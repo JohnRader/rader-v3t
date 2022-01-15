@@ -8,6 +8,7 @@ authors = ["John Rader <jcrader238@gmail.com>"]
 python = "^3.8"
 fastapi = "^0.71.0"
 uvicorn = "^0.16.0"
+pydantic = "^1.9.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
