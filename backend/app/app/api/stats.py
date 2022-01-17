@@ -34,7 +34,7 @@ async def update_player(id: int, payload: Player):
     raise HTTPException(status_code=404, detail='Player with given id not found')
 
 @stats.delete('/{id}')
-async def delete_movie(id: int):
+async def delete_player(id: int):
     db_length = len(fake_db)
     if 0 <= id <= db_length:
         del fake_db[id]
