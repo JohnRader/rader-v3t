@@ -1,6 +1,8 @@
+from turtle import title
 from fastapi import FastAPI
-from app.api.stats import stats
+from app.api.api import api_router
+
 
 app = FastAPI()
 
-app.include_router(stats)
+app.include_router(api_router)
