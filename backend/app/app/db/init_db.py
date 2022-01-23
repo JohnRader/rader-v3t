@@ -9,7 +9,7 @@ from app.db.base import Base
 def init_db(db: Session) -> None:
     Base.metadata.create_all(bind=engine)
 
-    # Create superuser if not db not already initialized
+    # Create superuser in db if not already initialized
     user = crud.get_user_by_email(db, email=settings.FIRST_SUPERUSER)
     if not user:
         user_in = schemas.UserCreate(
