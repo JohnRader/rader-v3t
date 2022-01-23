@@ -1,14 +1,19 @@
 from typing import Any, Dict, Optional
-from pydantic import BaseSettings, PostgresDsn, validator
+from pydantic import BaseSettings, PostgresDsn, AnyHttpUrl, validator
+
 
 class Settings(BaseSettings):
-    PROJECT_NAME: str = "Rader v3t"
+    API_V1_STR: str = "/api/v1"
+    PROJECT_NAME: str = "Rader v3t - backend"
     FIRST_SUPERUSER: str = "admin"
     FIRST_SUPERUSER_PASSWORD: str = "password"
-    POSTGRES_SERVER: str
-    POSTGRES_USER: str
-    POSTGRES_PASSWORD: str
-    POSTGRES_DB: str
+    SERVER_HOST: AnyHttpUrl = "http://127.0.0.1:8000"
+
+    # Point to whatever postegres db you want to use
+    POSTGRES_SERVER: str = "localhost:5432"
+    POSTGRES_USER: str = "postgres"
+    POSTGRES_PASSWORD: str = "password"
+    POSTGRES_DB: str = "rader-v3t-db"
     SQLALCHEMY_DATABASE_URI: Optional[PostgresDsn] = None
 
     @validator("SQLALCHEMY_DATABASE_URI", pre=True)
@@ -23,5 +28,5 @@ class Settings(BaseSettings):
             path=f"/{values.get('POSTGRES_DB') or ''}",
         )
 
-    
+
 settings = Settings()

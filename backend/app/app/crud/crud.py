@@ -19,7 +19,7 @@ def get_users(db: Session, skip: int = 0, limit: int = 100):
 def create_user(db: Session, user: schemas.UserCreate):
     # TODO: replace with real hashing
     fake_hash = user.password + "alazyhash"
-    
+
     db_user = models.User(name=user.name, email=user.email, hashed_password=fake_hash)
     db.add(db_user)
     db.commit()
