@@ -1,14 +1,13 @@
 from fastapi import FastAPI
 from app.api.api import api_router
 from app.config import settings
+from app.init_data import init_data
 
 
-app = FastAPI(title=settings.PROJECT_NAME)
+def start_application():
+    app = FastAPI(title=settings.PROJECT_NAME)
+    app.include_router(api_router)
+    init_data() 
+    return app
 
-
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
-
-
-app.include_router(api_router)
+app = start_application()

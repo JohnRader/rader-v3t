@@ -10,10 +10,9 @@ class Settings(BaseSettings):
     SERVER_HOST: AnyHttpUrl = "http://127.0.0.1:8000"
 
     # Point to whatever postegres db you want to use
-    POSTGRES_SERVER: str = "localhost:5432"
+    POSTGRES_SERVER: str = "0.0.0.0:5432"
     POSTGRES_USER: str = "postgres"
     POSTGRES_PASSWORD: str = "password"
-    POSTGRES_DB: str = "rader-v3t-db"
     SQLALCHEMY_DATABASE_URI: Optional[PostgresDsn] = None
 
     @validator("SQLALCHEMY_DATABASE_URI", pre=True)
