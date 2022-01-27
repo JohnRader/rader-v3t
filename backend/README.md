@@ -6,7 +6,7 @@ poetry install
 ```
 ## Setting up Postgres
 This backend of this app will not start correctly if no db is configured.
-Add exisiting postgres db info in config.py
+Add exisiting postgres db info in config.py, either add URI directly or configure the following:
 ```
 POSTGRES_SERVER: str = "host:port"
 POSTGRES_USER: str = "postgres"
