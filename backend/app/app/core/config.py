@@ -4,12 +4,10 @@ from pydantic import BaseSettings, PostgresDsn, AnyHttpUrl, validator
 
 class Settings(BaseSettings):
     API_V1_STR: str = "/api/v1"
-    PROJECT_NAME: str = "Rader v3t - backend"
-    FIRST_SUPERUSER: str = "admin"
-    FIRST_SUPERUSER_PASSWORD: str = "password"
+    PROJECT_NAME: str = "v3t_backend"
     SERVER_HOST: AnyHttpUrl = "http://127.0.0.1:8000"
 
-    # Point to whatever postegres db you want to use
+    # Point to whichever postegres db you want to use
     POSTGRES_SERVER: str = "0.0.0.0:5432"
     POSTGRES_USER: str = "postgres"
     POSTGRES_PASSWORD: str = "password"
@@ -26,6 +24,9 @@ class Settings(BaseSettings):
             host=values.get("POSTGRES_SERVER"),
             path=f"/{values.get('POSTGRES_DB') or ''}",
         )
+
+    FIRST_SUPERUSER: str = "admin"
+    FIRST_SUPERUSER_PASSWORD: str = "password"
 
 
 settings = Settings()
