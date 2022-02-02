@@ -1,6 +1,11 @@
 <script lang="ts">
+import { VCard, VContainer } from 'vuetify/lib/components/index';
 
 export default {
+  components: {
+    VCard,
+    VContainer
+  },
   setup(): void {
     // do something...
   },
@@ -8,23 +13,13 @@ export default {
 </script>
 
 <template>
-  <VContainer>
-    <VRow class="pt-12">
-      <VCol cols="9">
-        <VCard class="main-content" />
-      </VCol>
-      <VCol>
-        <VCard class="side-bar" />
-      </VCol>
-    </VRow>
+  <VContainer class="pt-8">
+    <VCard class="main-content"></VCard>
   </VContainer>
 </template>
 
 <style lang="scss">
 .main-content {
-  height: 560px;
-}
-.side-bar {
   height: 560px;
 }
 </style>
