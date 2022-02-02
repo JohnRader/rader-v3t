@@ -11,11 +11,13 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "types": [
-      "node"
+      "vite/client",
     ],
     "lib": [
       "esnext",
-      "dom"
+      "dom",
+      "dom.iterable",
+      "scripthost"
     ],
     "baseUrl": ".",
     "paths": {
@@ -25,9 +27,11 @@
     }
   },
   "include": [
+    "vite.config.*",
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.vue"
+    "src/**/*.vue",
+    "src/shims.d.ts"
   ]
 }

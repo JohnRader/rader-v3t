@@ -1,19 +1,10 @@
 <script lang="ts">
-import { Vue, Options } from 'vue-class-component';
-import {
-  VAppBar, VAppBarNavIcon, VTextField, VIcon, VBtn,
-} from 'vuetify/lib/components/index';
 
-@Options({
-  components: {
-    VBtn,
-    VIcon,
-    VAppBar,
-    VTextField,
-    VAppBarNavIcon,
+export default {
+  setup(): void {
+    // do something...
   },
-})
-export default class SiteHeader extends Vue {}
+};
 </script>
 
 <template>
@@ -37,7 +28,7 @@ export default class SiteHeader extends Vue {}
 
 <style lang="scss">
 .v-app-bar__content {
-    align-items: center;
-    justify-content: space-between;
+  align-items: center;
+  justify-content: space-between;
 }
 </style>

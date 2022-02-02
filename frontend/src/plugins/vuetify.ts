@@ -6,7 +6,7 @@ const vuetify = createVuetify({
       light: {
         colors: {
           surface: '#424242',
-          background: '#616161',
+          background: '#0D1117',
           primary: '#1976D2',
           secondary: '#424242',
           accent: '#212121',
