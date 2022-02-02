@@ -1,22 +1,10 @@
 <script lang="ts">
-import { Vue, Options } from 'vue-class-component';
-import {
-  VContainer, VCardActions, VCard, VRow, VCol, VCardTitle, VImg, VIcon,
-} from 'vuetify/lib/components/index';
 
-@Options({
-  components: {
-    VImg,
-    VRow,
-    VCol,
-    VIcon,
-    VCard,
-    VContainer,
-    VCardTitle,
-    VCardActions,
+export default {
+  setup(): void {
+    // do something...
   },
-})
-export default class HomePage extends Vue {}
+};
 </script>
 
 <template>

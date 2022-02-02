@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const typescriptLint = require('@typescript-eslint/eslint-plugin');
-const eslintJest = require('eslint-plugin-jest');
 
 class FilePatterns {
   static get typescript() {
@@ -15,12 +14,6 @@ class FilePatterns {
   static get vue() {
     return [
       '*.vue',
-    ];
-  }
-
-  static get jest() {
-    return [
-      '**/*.test.ts',
     ];
   }
 
@@ -57,7 +50,6 @@ module.exports = {
   plugins: [
     'import',
     '@typescript-eslint',
-    'eslint-plugin-jest',
   ],
   extends: [
     'eslint:recommended',
@@ -131,10 +123,6 @@ module.exports = {
           allowModifiers: true,
         }],
       },
-    },
-    {
-      files: FilePatterns.jest,
-      ...eslintJest.configs.recommended,
     },
   ],
 };
