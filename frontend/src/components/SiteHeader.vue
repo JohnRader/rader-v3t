@@ -1,53 +1,37 @@
-<script lang="ts">
-import { computed, ref } from 'vue';
+<script setup lang="ts">
 import { VAppBar, VBtn, VIcon, VSwitch } from 'vuetify/lib/components/index';
+import { getCurrentInstance, computed, ref } from 'vue';
 
-export default {
-  components: {
-    VBtn,
-    VIcon,
-    VSwitch,
-    VAppBar,
-  },
-  setup(): any {
-    const darkMode = ref(false);
+const internalInstance = getCurrentInstance();
 
-    const switchText = computed(() => {
-      return darkMode.value ? 'Enable Light Mode' : 'Enable Dark Mode';
-    });
+const darkMode = ref<boolean>(false);
 
-    const toggleDarkMode = () => {
-      darkMode.value = !darkMode.value;
-    };
+const theme = internalInstance?.appContext.config.globalProperties;
 
-    return {
-      darkMode,
-      switchText,
-      toggleDarkMode,
-    }
-  },
+const switchText = computed(() => {
+  return darkMode.value ? 'Enable Light Mode' : 'Enable Dark Mode';
+});
+
+const toggleDarkMode = (): void => {
+  darkMode.value = !darkMode.value;
 };
+
 </script>
 
 <template>
   <VAppBar app>
     <div>
-      <VSwitch
-        v-model="darkMode.value"
-        @change="toggleDarkMode"
-        :label="`${switchText}`"
-        class="mt-0"
-        hide-details
-      />
+      <VSwitch @change="toggleDarkMode" :label="`${switchText}`" class="mt-0" hide-details />
+      <span class="d-flex">theme: {{ theme }}</span>
     </div>
     <div class="header-controls">
-      <VBtn icon>
+      <VBtn class="mx-4" icon>
         <VIcon>mdi-magnify</VIcon>
       </VBtn>
-      <VBtn icon>
+      <VBtn class="mx-4" icon>
         <VIcon>mdi-account</VIcon>
       </VBtn>
-      <VBtn icon>
+      <VBtn class="mx-4" icon>
         <VIcon>mdi-dots-vertical</VIcon>
       </VBtn>
     </div>

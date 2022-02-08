@@ -1,15 +1,6 @@
-<script lang="ts">
+<script setup lang="ts">
 import { VCard, VContainer } from 'vuetify/lib/components/index';
 
-export default {
-  components: {
-    VCard,
-    VContainer
-  },
-  setup(): void {
-    // do something...
-  },
-};
 </script>
 
 <template>

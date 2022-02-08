@@ -12,13 +12,18 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "types": [
+      "node",
+      "vue",
       "vite/client",
+    ],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/@types"
     ],
     "lib": [
       "esnext",
       "dom",
       "dom.iterable",
-      "scripthost"
     ],
     "baseUrl": ".",
     "paths": {
@@ -33,6 +38,5 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "src/shims.d.ts"
   ]
 }
