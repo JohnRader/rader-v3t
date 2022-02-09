@@ -3,36 +3,37 @@
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "node",
-    "useDefineForClassFields": true,
-    "experimentalDecorators": true,
     "strict": true,
     "jsx": "preserve",
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "types": [
-      "vite/client",
-    ],
     "lib": [
       "esnext",
       "dom",
-      "dom.iterable",
-      "scripthost"
+    ],
+    "types": [
+      "vite/client",
+      "node",
+      "vue",
+      "vuetify",
+    ],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/@types"
     ],
     "baseUrl": ".",
     "paths": {
       "@/*": [
-        "src/*"
+        "./src/*"
       ]
     }
   },
   "include": [
-    "vite.config.*",
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "src/shims.d.ts"
   ]
 }

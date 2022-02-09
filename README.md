@@ -9,15 +9,15 @@
 
 * [Node.js](https://nodejs.org/en/).
 
-# Backend
+# Backend Development
 See [Readme](backend/readme.md) for details on backend setup.
 
 ## Frontend development
 
-* Enter the project directory, install the NPM packages and start the live server using the `npm` scripts:
+* Enter the frontend directory, install the NPM packages and start the live server using the `npm` scripts:
 
 ```bash
-cd /project/path
+cd /project/path/frontend
 npm i
 npm run dev
 ```

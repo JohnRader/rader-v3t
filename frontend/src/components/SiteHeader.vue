@@ -1,26 +1,23 @@
-<script lang="ts">
+<script setup lang="ts">
+import { VAppBar, VBtn, VIcon, VSwitch } from 'vuetify/lib/components/index';
+import { getCurrentInstance, computed, ref } from 'vue';
 
-export default {
-  setup(): void {
-    // do something...
-  },
-};
 </script>
 
 <template>
   <VAppBar app>
-    <VBtn icon>
-      <VIcon>mdi-home-circle</VIcon>
+    <VBtn :variant="'text'" class="ml-6" icon>
+      <VIcon>mdi-dots-vertical</VIcon>
     </VBtn>
-    <div class="header-controls">
-      <VBtn icon>
+    <div class="mr-6 header-controls">
+      <VBtn :variant="'text'" icon>
         <VIcon>mdi-magnify</VIcon>
       </VBtn>
-      <VBtn icon>
+      <VBtn :variant="'text'" icon>
         <VIcon>mdi-account</VIcon>
       </VBtn>
-      <VBtn icon>
-        <VIcon>mdi-dots-vertical</VIcon>
+      <VBtn :variant="'text'" icon>
+        <VIcon>mdi-cog-outline</VIcon>
       </VBtn>
     </div>
   </VAppBar>

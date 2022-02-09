@@ -1,25 +1,16 @@
-<script lang="ts">
+<script setup lang="ts">
+import { VApp, VMain, VNavigationDrawer } from 'vuetify/lib/components/index';
 import HomePage from './components/HomePage.vue';
 import SiteHeader from './components/SiteHeader.vue';
 
-export default {
-  components: {
-    HomePage,
-    SiteHeader,
-  },
-  setup(): void {
-    // do something...
-  },
-};
 </script>
 
 <template>
   <VApp>
+    <VNavigationDrawer />
     <SiteHeader />
     <VMain>
       <HomePage />
     </VMain>
   </VApp>
 </template>
-
-<style lang="scss" src="./styles/index.scss"></style>
