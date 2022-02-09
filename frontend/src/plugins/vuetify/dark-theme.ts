@@ -1,9 +1,9 @@
 export default {
     colors: {
-        surface: '#ECEFF1',
-        background: '#CFD8DC',
+        surface: '#27272f',
+        background: '#33333d',
         primary: '#1976D2',
-        secondary: '#424242',
+        secondary: '#ECEFF1',
         accent: '#212121',
         error: '#FF5252',
         info: '#2196F3',

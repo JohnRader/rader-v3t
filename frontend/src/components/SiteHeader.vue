@@ -2,37 +2,22 @@
 import { VAppBar, VBtn, VIcon, VSwitch } from 'vuetify/lib/components/index';
 import { getCurrentInstance, computed, ref } from 'vue';
 
-const internalInstance = getCurrentInstance();
-
-const darkMode = ref<boolean>(false);
-
-const theme = internalInstance?.appContext.config.globalProperties;
-
-const switchText = computed(() => {
-  return darkMode.value ? 'Enable Light Mode' : 'Enable Dark Mode';
-});
-
-const toggleDarkMode = (): void => {
-  darkMode.value = !darkMode.value;
-};
-
 </script>
 
 <template>
   <VAppBar app>
-    <div>
-      <VSwitch @change="toggleDarkMode" :label="`${switchText}`" class="mt-0" hide-details />
-      <span class="d-flex">theme: {{ theme }}</span>
-    </div>
-    <div class="header-controls">
-      <VBtn class="mx-4" icon>
+    <VBtn :variant="'text'" class="ml-6" icon>
+      <VIcon>mdi-dots-vertical</VIcon>
+    </VBtn>
+    <div class="mr-6 header-controls">
+      <VBtn :variant="'text'" icon>
         <VIcon>mdi-magnify</VIcon>
       </VBtn>
-      <VBtn class="mx-4" icon>
+      <VBtn :variant="'text'" icon>
         <VIcon>mdi-account</VIcon>
       </VBtn>
-      <VBtn class="mx-4" icon>
-        <VIcon>mdi-dots-vertical</VIcon>
+      <VBtn :variant="'text'" icon>
+        <VIcon>mdi-cog-outline</VIcon>
       </VBtn>
     </div>
   </VAppBar>
