@@ -1,0 +1,32 @@
+// Default variables
+$border-radius-root: 6px;
+$font-size-root: 16px;
+
+// Typography
+$body-font-family: ('Roboto', sans-serif);
+$heading-font-family: ('Roboto', sans-serif);
+
+// Theme colors
+$material-light: (
+    surface: '#ECEFF1',
+    background: '#CFD8DC',
+    primary: '#1976D2',
+    secondary: '#27272f',
+    accent: '#212121',
+    error: '#FF5252',
+    info: '#2196F3',
+    success: '#4CAF50',
+    warning: '#FB8C00',
+);
+
+$material-dark: (
+    surface: '#27272f',
+    background: '#33333d',
+    primary: '#1976D2',
+    secondary: '#ECEFF1',
+    accent: '#212121',
+    error: '#FF5252',
+    info: '#2196F3',
+    success: '#4CAF50',
+    warning: '#FB8C00',
+);
