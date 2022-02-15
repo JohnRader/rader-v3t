@@ -1,5 +1,5 @@
 import '@mdi/font/css/materialdesignicons.css';
-import 'vuetify/lib/styles/main.sass';
+import '@/styles/sass/main.scss';
 import { createVuetify } from 'vuetify';
 import * as components from 'vuetify/lib/components/index'
 import * as directives from 'vuetify/lib/directives/index'
@@ -24,7 +24,7 @@ const vuetify = createVuetify({
   },
   locale: { defaultLocale: 'en' },
   theme: {
-    defaultTheme: 'dark',
+    defaultTheme: 'light',
     themes: {
       light,
       dark,
