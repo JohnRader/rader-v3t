@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { VApp, VMain, VNavigationDrawer } from 'vuetify/lib/components/index';
 import { ref } from 'vue';
-import HomePage from './components/HomePage.vue';
 import SiteHeader from './components/SiteHeader.vue';
+import { RouterView } from 'vue-router';
 
 const theme = ref<string>('light');
 
@@ -16,7 +16,7 @@ const toggleTheme = (darkMode: boolean) => {
     <VNavigationDrawer />
     <SiteHeader @toggle-theme="toggleTheme" />
     <VMain>
-      <HomePage />
+      <RouterView />
     </VMain>
   </VApp>
 </template>

@@ -1,6 +1,7 @@
 {
   "name": "rader-v3t",
   "version": "0.0.0",
+  "description": "A template frontend using vite, vuetify 3 and vue 3",
   "scripts": {
     "type-check": "vue-tsc --noEmit",
     "build": "vue-tsc --noEmit && vite build",
@@ -13,10 +14,9 @@
     "@mdi/font": "5.9.55",
     "axios": "^0.24.0",
     "pinia": "^2.0.11",
-    "roboto-fontface": "*",
     "vue": "^3.2.6",
-    "vue-router": "^3.5.3",
-    "vuetify": "^3.0.0-alpha.12"
+    "vue-router": "^4.0.12",
+    "vuetify": "npm:@vuetify/nightly@^3.0.0-next-20220219.0"
   },
   "devDependencies": {
     "@types/node": "^17.0.16",
