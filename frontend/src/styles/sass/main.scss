@@ -2,87 +2,91 @@
 @use '@/styles/sass/_variables.scss' as vars;
 
 @use 'vuetify/styles' with (
-    $border-radius-root: vars.$border-radius-root,
-    $font-size-root: vars.$font-size-root,
-    $body-font-family: vars.$body-font-family,
-    $heading-font-family: vars.$heading-font-family,
-    // TODO: look at this when beta is released
-    // TODO: Currently blocked by bugs: https://github.com/vuetifyjs/vuetify-loader/issues/221 & https://github.com/vuetifyjs/vuetify/issues/14446
-    // $headings: map.deep-merge(
-    //     (
-    //         'h1': (
-    //             'font-family': vars.$body-font-family,
-    //             'letter-spacing': initial,
-    //             'size': calc(96 / vars.$default-font-size)rem,
-    //             'weight': 300
-    //         ),
-    //         'h2': (
-    //             'font-family': vars.$body-font-family,
-    //             'letter-spacing': initial,
-    //             'size': calc(60 / vars.$default-font-size)rem,
-    //             'weight': 300
-    //         ),
-    //         'h3': (
-    //             'font-family': vars.$heading-font-family,
-    //             'letter-spacing': initial,
-    //             'size': calc(48 / vars.$default-font-size)rem,
-    //             'weight': 400
-    //         ),
-    //         'h4': (
-    //             'font-family': vars.$body-font-family,
-    //             'letter-spacing': initial,
-    //             'size': calc(34 / vars.$default-font-size)rem,
-    //             'weight': 400
-    //         ),
-    //         'h5': (
-    //             'font-family': vars.$body-font-family,
-    //             'letter-spacing': initial,
-    //             'size': calc(24 / vars.$default-font-size)rem,
-    //             'weight': 400
-    //         ),
-    //         'h6': (
-    //             'font-family': vars.$body-font-family,
-    //             'letter-spacing': initial,
-    //             'size': calc(20 / vars.$default-font-size)rem,
-    //             'weight': 500
-    //         ),
-    //         'subtitle-1': (
-    //             'font-family': vars.$body-font-family,
-    //             'letter-spacing': initial,
-    //             'size': calc(16 / vars.$default-font-size)rem,
-    //             'weight': 400
-    //         ),
-    //         'subtitle-2': (
-    //             'font-family': vars.$body-font-family,
-    //             'letter-spacing': initial,
-    //             'size': calc(14 / vars.$default-font-size)rem,
-    //             'weight': 500
-    //         ),
-    //         'body-1': (
-    //             'font-family': vars.$heading-font-family,
-    //             'letter-spacing': initial,
-    //             'size': calc(16 / vars.$default-font-size)rem,
-    //             'weight': 400
-    //         ),
-    //         'body-2': (
-    //             'font-family': vars.$body-font-family,
-    //             'letter-spacing': initial,
-    //             'size': calc(14 / vars.$default-font-size)rem,
-    //             'weight': 300
-    //         ),
-    //         'caption': (
-    //             'font-family': vars.$body-font-family,
-    //             'letter-spacing': initial,
-    //             'size': calc(12 / vars.$default-font-size)rem,
-    //             'weight': 400
-    //         ),
-    //         'overline': (
-    //             'font-family': vars.$body-font-family,
-    //             'letter-spacing': initial,
-    //             'size': calc(10 / vars.$default-font-size)rem,
-    //             'weight': 400
-    //         )
-    //     ),
-    //     ()
-    // )
+  $border-radius-root: vars.$border-radius-root,
+  $font-size-root: vars.$font-size-root,
+  $body-font-family: vars.$body-font-family,
+  $heading-font-family: vars.$heading-font-family,
+  // TODO: look at this when beta is released
+  // TODO: Currently blocked by bugs: https://github.com/vuetifyjs/vuetify-loader/issues/221 & https://github.com/vuetifyjs/vuetify/issues/14446
+  // $headings: map.deep-merge(
+  //   (
+  //     'h1': (
+  //         'font-family': vars.$body-font-family,
+  //         'letter-spacing': initial,
+  //         'size': calc(96 / vars.$font-size-root)rem,
+  //         'weight': 300
+  //     ),
+  //     'h2': (
+  //         'font-family': vars.$body-font-family,
+  //         'letter-spacing': initial,
+  //         'size': calc(60 / vars.$font-size-root)rem,
+  //         'weight': 300
+  //     ),
+  //     'h3': (
+  //         'font-family': vars.$heading-font-family,
+  //         'letter-spacing': initial,
+  //         'size': calc(48 / vars.$font-size-root)rem,
+  //         'weight': 400
+  //     ),
+  //     'h4': (
+  //         'font-family': vars.$body-font-family,
+  //         'letter-spacing': initial,
+  //         'size': calc(34 / vars.$font-size-root)rem,
+  //         'weight': 400
+  //     ),
+  //     'h5': (
+  //         'font-family': vars.$body-font-family,
+  //         'letter-spacing': initial,
+  //         'size': calc(24 / vars.$font-size-root)rem,
+  //         'weight': 400
+  //     ),
+  //     'h6': (
+  //         'font-family': vars.$body-font-family,
+  //         'letter-spacing': initial,
+  //         'size': calc(20 / vars.$font-size-root)rem,
+  //         'weight': 500
+  //     ),
+  //     'subtitle-1': (
+  //         'font-family': vars.$body-font-family,
+  //         'letter-spacing': initial,
+  //         'size': calc(16 / vars.$font-size-root)rem,
+  //         'weight': 400
+  //     ),
+  //     'subtitle-2': (
+  //         'font-family': vars.$body-font-family,
+  //         'letter-spacing': initial,
+  //         'size': calc(14 / vars.$font-size-root)rem,
+  //         'weight': 500
+  //     ),
+  //     'body-1': (
+  //         'font-family': vars.$heading-font-family,
+  //         'letter-spacing': initial,
+  //         'size': calc(16 / vars.$font-size-root)rem,
+  //         'weight': 400
+  //     ),
+  //     'body-2': (
+  //         'font-family': vars.$body-font-family,
+  //         'letter-spacing': initial,
+  //         'size': calc(14 / vars.$font-size-root)rem,
+  //         'weight': 300
+  //     ),
+  //     'caption': (
+  //         'font-family': vars.$body-font-family,
+  //         'letter-spacing': initial,
+  //         'size': calc(12 / vars.$font-size-root)rem,
+  //         'weight': 400
+  //     ),
+  //     'overline': (
+  //         'font-family': vars.$body-font-family,
+  //         'letter-spacing': initial,
+  //         'size': calc(10 / vars.$font-size-root)rem,
+  //         'weight': 400
+  //     )
+  //   ),
+  //   ()
+  // )
 );
+
+.v-main {
+    height: 100vh;
+}
