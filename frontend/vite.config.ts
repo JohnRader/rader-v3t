@@ -10,7 +10,9 @@ export default defineConfig({
   mode: 'development',
   plugins: [
     vue(),
-    vuetify({ styles: 'expose' }),
+    vuetify({
+      styles: 'expose',
+    }),
   ],
   define: { 'process.env': {} },
   resolve: {
@@ -20,8 +22,8 @@ export default defineConfig({
   },
   css: {
     preprocessorOptions: {
-      sass: {
-        additionalData: `@import '${pathSrc}/scss/_variables';`,
+      scss: {
+        additionalData: `@use '${pathSrc}/styles/sass/main';`,
       },
     },
   },
