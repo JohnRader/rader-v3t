@@ -1,4 +1,4 @@
-import '@/styles/sass/main.scss';
+import '@/styles/sass/_vuetify-overrides.scss';
 import '@mdi/font/css/materialdesignicons.css';
 import { createVuetify } from 'vuetify';
 import * as components from 'vuetify/lib/components/index'
@@ -10,19 +10,8 @@ const vuetify = createVuetify({
   components,
   directives,
   defaults: {
-    VAppBar: {
-      flat: true,
-    },
-    VBtn: {
-      color: 'secondary',
-      height: 44,
-      rounded: 'md',
-    },
-    VSheet: {
-      color: '#212121',
-    },
+    // add vuetify component defaults here
   },
-  locale: { defaultLocale: 'en' },
   theme: {
     defaultTheme: 'light',
     themes: {

@@ -27,19 +27,19 @@ function routeToHome(): void {
 <template>
   <VAppBar app>
     <div class="d-flex align-center">
-      <VBtn :variant="'text'" flat icon @click="toggleTheme">
+      <VBtn :variant="'contained-flat'" flat icon @click="toggleTheme">
         <VIcon>{{ icon }}</VIcon>
       </VBtn>
       <VSwitch v-model="darkMode" flat hide-details :color="'secondary'" @click="toggleTheme" />
     </div>
     <div class="mr-6 d-flex align-center header-controls">
-      <VBtn :variant="'text'" icon @click="routeToHome">
+      <VBtn :variant="'contained-flat'" icon @click="routeToHome">
         <VIcon>mdi-home</VIcon>
       </VBtn>
-      <VBtn :variant="'text'" icon @click="routeToAccount">
+      <VBtn :variant="'contained-flat'" icon @click="routeToAccount">
         <VIcon>mdi-account</VIcon>
       </VBtn>
-      <VBtn :variant="'text'" icon>
+      <VBtn :variant="'contained-flat'" icon>
         <VIcon>mdi-cog-outline</VIcon>
       </VBtn>
     </div>
