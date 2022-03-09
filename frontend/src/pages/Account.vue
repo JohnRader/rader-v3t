@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { VContainer } from 'vuetify/lib/components/index';
 </script>
 
 <template>
-  <h1>Account Page</h1>
+  <VContainer>
+    <h1 class="d-flex justify-center">Account Page</h1>
+  </VContainer>
 </template>

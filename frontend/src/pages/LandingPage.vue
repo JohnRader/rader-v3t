@@ -1,8 +1,12 @@
 <script setup lang="ts">
+import { VContainer } from 'vuetify/lib/components/index';
 </script>
 
 <template>
-  <div>
-    <h1>Landing Page</h1>
-  </div>
+  <VContainer>
+    <h1 class="d-flex justify-center pb-10">Rader v3t</h1>
+    <div class="d-flex justify-center">
+      <p>Frontend templete utilizing Vite, Vue 3, and Vuetify 3</p>
+    </div>
+  </VContainer>
 </template>
