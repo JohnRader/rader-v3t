@@ -14,6 +14,7 @@ export default defineConfig({
       styles: 'expose',
     }),
   ],
+  publicDir: 'assets',
   define: { 'process.env': {} },
   resolve: {
     alias: {
@@ -23,7 +24,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@use '${pathSrc}/styles/sass/main';`,
+        additionalData: `@use '${pathSrc}/styles/sass/_globals';`,
       },
     },
   },
