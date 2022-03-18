@@ -26,45 +26,40 @@ const routeToHome = (): void => {
 
 <template>
   <VAppBar app class="app-bar">
-    <div class="app-bar__content">
-      <VRow>
-        <VCol cols="4">
-          <div class="d-flex align-center">
-            <VIcon class="ma-4 theme-icon" @click="toggleTheme">{{ icon }}</VIcon>
-            <VSwitch
-              v-model="darkMode"
-              flat
-              hide-details
-              :color="'secondary'"
-              @click="toggleTheme"
-            />
-          </div>
-        </VCol>
-        <VCol cols="4">
-          <div class="d-flex justify-center">
-            <img :src="'src/assets/logo.png'" />
-          </div>
-        </VCol>
-        <VCol cols="4">
-          <div class="d-flex justify-end">
-            <VBtn :variant="'contained-flat'" icon @click="routeToHome">
-              <VIcon>mdi-home</VIcon>
-            </VBtn>
-            <VBtn :variant="'contained-flat'" icon @click="routeToAccount">
-              <VIcon>mdi-account</VIcon>
-            </VBtn>
-            <VBtn :variant="'contained-flat'" icon>
-              <VIcon>mdi-cog-outline</VIcon>
-            </VBtn>
-          </div>
-        </VCol>
-      </VRow>
-    </div>
+    <VRow class="app-bar__content ma-0">
+      <VCol class="py-0" cols="4">
+        <div class="d-flex align-center column">
+          <VIcon class="ma-4 theme-icon" @click="toggleTheme">{{ icon }}</VIcon>
+          <VSwitch v-model="darkMode" flat hide-details :color="'secondary'" @click="toggleTheme" />
+        </div>
+      </VCol>
+      <VCol class="py-0" cols="4">
+        <div class="d-flex justify-center align-center column">
+          <img :src="'src/assets/logo.png'" />
+        </div>
+      </VCol>
+      <VCol class="py-0" cols="4">
+        <div class="d-flex justify-end align-center column">
+          <VBtn :variant="'contained-flat'" icon @click="routeToHome">
+            <VIcon>mdi-home</VIcon>
+          </VBtn>
+          <VBtn :variant="'contained-flat'" icon @click="routeToAccount">
+            <VIcon>mdi-account</VIcon>
+          </VBtn>
+          <VBtn :variant="'contained-flat'" icon>
+            <VIcon>mdi-cog-outline</VIcon>
+          </VBtn>
+        </div>
+      </VCol>
+    </VRow>
   </VAppBar>
 </template>
 
 <style lang="scss">
 .app-bar {
+  .v-toolbar__content {
+    padding: 0;
+  }
   .v-switch {
     .v-label {
       height: unset; // remove label from switch component
@@ -73,6 +68,9 @@ const routeToHome = (): void => {
   &__content {
     width: 100%;
     height: 100%;
+    .column {
+      height: 100%;
+    }
     img {
       :hover {
         cursor: pointer;
