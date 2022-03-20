@@ -5,7 +5,7 @@ import { VTextField, VCard, VContainer } from 'vuetify/lib/components/index';
 
 <template>
   <VContainer class="pt-8">
-    <div class="d-flex justify-center"></div>
+    <div class="d-flex justify-center">Home</div>
   </VContainer>
 </template>
 

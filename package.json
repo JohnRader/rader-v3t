@@ -13,12 +13,11 @@
   "dependencies": {
     "@mdi/font": "5.9.55",
     "axios": "^0.24.0",
-    "dotenv": "^16.0.0",
     "firebase": "^9.6.8",
-    "pinia": "^2.0.11",
+    "pinia": "^2.0.12",
     "vue": "^3.2.6",
     "vue-router": "^4.0.12",
-    "vuetify": "npm:@vuetify/nightly@^3.0.0-next-20220308.0"
+    "vuetify": "^3.0.0-beta.0"
   },
   "devDependencies": {
     "@types/node": "^17.0.16",
