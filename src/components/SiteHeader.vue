@@ -40,13 +40,13 @@ const routeToHome = (): void => {
       </VCol>
       <VCol class="py-0" cols="4">
         <div class="d-flex justify-end align-center column">
-          <VBtn :variant="'contained-flat'" icon @click="routeToHome">
+          <VBtn :variant="'plain'" icon @click="routeToHome">
             <VIcon>mdi-home</VIcon>
           </VBtn>
-          <VBtn :variant="'contained-flat'" icon @click="routeToAccount">
+          <VBtn :variant="'plain'" icon @click="routeToAccount">
             <VIcon>mdi-account</VIcon>
           </VBtn>
-          <VBtn :variant="'contained-flat'" icon>
+          <VBtn :variant="'plain'" icon>
             <VIcon>mdi-cog-outline</VIcon>
           </VBtn>
         </div>

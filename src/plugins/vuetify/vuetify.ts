@@ -1,5 +1,5 @@
-import '@/styles/sass/_vuetify-overrides.scss';
 import '@mdi/font/css/materialdesignicons.css';
+import '@/styles/sass/_vuetify-overrides.scss';
 import { createVuetify } from 'vuetify';
 import light from './light-theme';
 import dark from './dark-theme';

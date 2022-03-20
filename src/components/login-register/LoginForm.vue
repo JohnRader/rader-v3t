@@ -33,14 +33,6 @@ const formValues = ref({
         :variant="'contained-flat'"
         @click="$emit('form-submit', formValues)"
       >Sign In</VBtn>
-      <VBtn
-        class="mb-2"
-        flat
-        :block="true"
-        :color="'primary'"
-        :variant="'contained-flat'"
-        @click="$emit('sign-out')"
-      >Signout</VBtn>
     </VForm>
   </VContainer>
 </template>
