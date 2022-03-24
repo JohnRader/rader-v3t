@@ -1,19 +1,21 @@
 <script setup lang="ts">
 import { VApp, VMain } from 'vuetify/lib/components/index';
-import { ref } from 'vue';
-import { RouterView } from 'vue-router';
+import { computed } from 'vue';
+import { UserStore } from '@/stores/user-store';
 import SiteHeader from './components/SiteHeader.vue';
 
-const theme = ref<string>('light');
+import { RouterView } from 'vue-router';
 
-const toggleTheme = (darkMode: boolean) => {
-  theme.value = darkMode ? 'dark' : 'light'
-};
+let store = UserStore();
+
+const theme = computed(() => {
+  return store.$state.user?.preferences.darkMode ? 'dark' : 'light';
+});
 </script>
 
 <template>
   <VApp :theme="theme">
-    <SiteHeader @toggle-theme="toggleTheme" />
+    <SiteHeader />
     <VMain>
       <RouterView />
     </VMain>

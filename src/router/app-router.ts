@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import auth from '@/services/auth/auth';
+import AuthService from '@/services/auth/auth-service';
+import { UserStore } from '@/stores/user-store';
 
 export enum RouteNames {
   HomePage = 'homePage',
@@ -30,12 +31,24 @@ const router = createRouter({
       name: RouteNames.AccountPage,
       path: '/account',
       component: AccountPage,
-      beforeEnter: (to, from, next): void => {
-        const { currentUser } = auth;
+      beforeEnter: async (to, from, next): Promise<void> => {
+        await AuthService.authenticated;
+        const { currentUser } = await AuthService.auth;
+
+        // After login, continue to account page
+        if (currentUser && from.name === RouteNames.SignInRegisterPage) {
+          return next();
+        }
+
+        // Get user data on page load
+        if (currentUser) {
+          const { getUser } = UserStore();
+          await getUser(currentUser.uid);
+          return next();
+        }
+
         if (!currentUser) {
           return next({ name: RouteNames.SignInRegisterPage });
-        } else {
-          return next();
         }
       }
     },
@@ -43,6 +56,15 @@ const router = createRouter({
       name: RouteNames.SignInRegisterPage,
       path: '/signin',
       component: SignInRegisterPage,
+      beforeEnter: async (to, from, next): Promise<void> => {
+        await AuthService.authenticated;
+        const { currentUser } = await AuthService.auth;
+
+        if (currentUser) {
+          return next({ name: RouteNames.AccountPage });
+        }
+        return next();
+      }
     },
     {
       path: '/*', redirect: '/',

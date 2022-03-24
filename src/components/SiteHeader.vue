@@ -1,19 +1,11 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import { RouteNames } from '@/router/app-router';
 import { useRouter } from 'vue-router';
-import { getCurrentInstance, ref } from 'vue';
-import { VAppBar, VBtn, VIcon, VSwitch, VCol, VRow } from 'vuetify/lib/components/index';
+import { VAppBar, VBtn, VIcon, VTextField, VCol, VRow, VForm } from 'vuetify/lib/components/index';
 
-const darkMode = ref<boolean>(false);
-const icon = ref<string>('mdi-weather-sunny');
-const instance = getCurrentInstance();
 const router = useRouter();
-
-const toggleTheme = (): void => {
-  darkMode.value = !darkMode.value;
-  icon.value = darkMode.value ? 'mdi-weather-night' : 'mdi-weather-sunny';
-  instance?.emit('toggle-theme', darkMode.value);
-};
+const searchInput = ref('');
 
 const routeToAccount = (): void => {
   router.push({ name: RouteNames.AccountPage });
@@ -22,20 +14,36 @@ const routeToAccount = (): void => {
 const routeToHome = (): void => {
   router.push({ name: RouteNames.HomePage });
 }
+
+const routeToLanding = (): void => {
+  router.push({ name: RouteNames.LandingPage });
+}
+
+const search = (): void => {
+  // TODO: Come back to me when there are things to search
+  console.log(`Searching for ${searchInput.value}...`);
+}
 </script>
 
 <template>
   <VAppBar app class="app-bar">
     <VRow class="app-bar__content ma-0">
       <VCol class="py-0" cols="4">
-        <div class="d-flex align-center column">
-          <VIcon class="ma-4 theme-icon" @click="toggleTheme">{{ icon }}</VIcon>
-          <VSwitch v-model="darkMode" flat hide-details :color="'secondary'" @click="toggleTheme" />
+        <div class="d-flex justify-start align-center column">
+          <img class="logo" :src="'src/assets/logo.png'" @click="routeToLanding" />
         </div>
       </VCol>
       <VCol class="py-0" cols="4">
         <div class="d-flex justify-center align-center column">
-          <img :src="'src/assets/logo.png'" />
+          <VForm class="searchbar" @submit="search">
+            <VTextField
+              v-model="searchInput"
+              :variant="'outlined'"
+              :density="'compact'"
+              :placeholder="'Search...'"
+              :clearable="true"
+            ></VTextField>
+          </VForm>
         </div>
       </VCol>
       <VCol class="py-0" cols="4">
@@ -60,26 +68,21 @@ const routeToHome = (): void => {
   .v-toolbar__content {
     padding: 0;
   }
-  .v-switch {
-    .v-label {
-      height: unset; // remove label from switch component
-    }
-  }
   &__content {
     width: 100%;
     height: 100%;
     .column {
       height: 100%;
-    }
-    img {
-      :hover {
-        cursor: pointer;
+      .searchbar {
+        width: 340px;
       }
-      height: 48px;
-      width: 48px;
-    }
-    .theme-icon {
-      cursor: pointer;
+      img {
+        height: 48px;
+        width: 48px;
+        &:hover {
+          cursor: pointer;
+        }
+      }
     }
   }
 }
