@@ -1,12 +1,14 @@
 import { DocumentReference, DocumentData } from 'firebase/firestore';
 import { User, UpdatePreferencesRequest } from '@/models/user-model';
 import { updateLocalStoragePreferences } from '@/stores/user-store';
-import FirestoreService from './firestore-service';
+import FirestoreService from '@/services/db/firestore-service';
+
+const COLLECTION_ID = 'users';
 
 const getUserReference = async (uid: string): Promise<DocumentReference<DocumentData> | void> => {
   try {
     const userReference = await FirestoreService.getDocumentReference({
-      collectionId: 'users',
+      collectionId: COLLECTION_ID,
       indentiferField: 'uid',
       indentiferValue: uid,
     });
@@ -19,7 +21,7 @@ const getUserReference = async (uid: string): Promise<DocumentReference<Document
 export const getUserData = async (uid: string): Promise<User | void> => {
   try {
     const user = await FirestoreService.getDocumentData({
-      collectionId: 'users',
+      collectionId: COLLECTION_ID,
       indentiferField: 'uid',
       indentiferValue: uid,
     }) as User;
@@ -33,7 +35,7 @@ export const getUserData = async (uid: string): Promise<User | void> => {
 export const addUser = async (user: User): Promise<void> => {
   try {
     const userRecord = await FirestoreService.getDocumentReference({
-      collectionId: 'users',
+      collectionId: COLLECTION_ID,
       indentiferField: 'uid',
       indentiferValue: user.uid,
     });
@@ -41,7 +43,7 @@ export const addUser = async (user: User): Promise<void> => {
     if (!userRecord) {
       console.log('User not found in db, adding new user...');
       await FirestoreService.addDocument({
-        collectionId: 'users',
+        collectionId: COLLECTION_ID,
         document: user,
       });
       console.log('User added to db');

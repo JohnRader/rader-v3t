@@ -52,9 +52,9 @@ const updateUserInfo = async (): Promise<void> => {
       <img class="d-flex profile-card__img mr-2" :src="'src/assets/logo.png'" />
       <h1 class="d-flex justify-center">Hello, {{ store.user?.userInfo.displayName }}</h1>
     </div>
-    <div class="d-flex flex-column px-6">
+    <div class="d-flex justify-space-around px-6">
       <div class="d-flex flex-column py-6">
-        <span class="text-h4">Account Details:</span>
+        <span class="text-h4 pb-4">Account Details</span>
         <div class="d-flex flex-column">
           <span>
             <strong>First Name:</strong>
@@ -79,7 +79,7 @@ const updateUserInfo = async (): Promise<void> => {
         </div>
       </div>
       <div class="d-flex flex-column align-start py-6">
-        <span class="text-h4 align-start">Preferences:</span>
+        <span class="text-h4 align-start pb-4">Preferences</span>
         <div class="d-flex justify-center align-center">
           <strong>Theme:</strong>
           <div class="d-flex align-center">
@@ -123,7 +123,12 @@ const updateUserInfo = async (): Promise<void> => {
         :variant="'contained-flat'"
         @click="store.logOut"
         :disabled="isLoading"
-      >Signout</VBtn>
+      >
+        <template #default>
+          <span v-if="!isLoading">Sign Out</span>
+          <VProgressCircular v-if="isLoading" class="ml-2" :indeterminate="isLoading" :size="24" />
+        </template>
+      </VBtn>
     </div>
   </VCard>
 </template>

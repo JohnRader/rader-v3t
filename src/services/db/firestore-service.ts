@@ -1,7 +1,7 @@
 import {
   Firestore, getFirestore, collection, getDocs, query, where, doc, updateDoc, addDoc,
 } from 'firebase/firestore';
-import firebaseApp from '../firebase';
+import firebaseApp from '@/services/firebase';
 
 import type { DocumentReference, DocumentData } from 'firebase/firestore';
 
@@ -43,7 +43,7 @@ class FirestoreServiceClass {
         return docRef;
       }
 
-      throw new Error(`Document in ${request.collectionId} not found`);
+      console.log(`Document reference in ${request.collectionId} not found`);
     } catch (error) {
       throw error;
     }
@@ -59,7 +59,7 @@ class FirestoreServiceClass {
         console.log(`Document ${docs[0].id} found in ${request.collectionId}`);
         return data;
       }
-      throw new Error('User not found');
+      console.log(`Document data in ${request.collectionId} not found`);
     } catch (error) {
       console.error(error);
     }

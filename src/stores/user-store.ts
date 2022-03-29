@@ -3,7 +3,7 @@ import router, { RouteNames } from '@/router/app-router';
 import AuthService from '@/services/auth/auth-service';
 
 import { onAuthStateChanged } from 'firebase/auth';
-import { addUser, updateUserPreferences, getUserData } from '@/services/db/user-service';
+import { addUser, updateUserPreferences, getUserData } from '@/services/user/user-service';
 import { User, RegisterUserRequest, UpdatePreferencesRequest, UserPreferences } from '@/models/user-model';
 
 import type { UserLogin, UserRegister } from '@/services/auth/auth-service';
