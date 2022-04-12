@@ -1,8 +1,17 @@
+import {
+  Auth, getAuth, signInWithEmailAndPassword, User, createUserWithEmailAndPassword
+} from 'firebase/auth';
 import firebaseApp from '../firebase';
-import { Auth, getAuth, signInWithEmailAndPassword, User, createUserWithEmailAndPassword } from 'firebase/auth';
 import { updateLocalStoragePreferences } from '@/stores/user-store';
 
-import type { RegisterForm } from '@/components/login-register/RegisterForm.vue';
+export interface RegisterFormData {
+  displayName: string,
+  firstName: string,
+  lastName: string,
+  email: string,
+  password: string,
+  phoneNumber: string,
+}
 
 export enum AuthProvider {
   Email = 'email',
@@ -58,53 +67,52 @@ export interface UserLogin extends UserAuthRequest {
 
 export interface UserRegister extends UserAuthRequest {
   registerRequest: AuthProviderRequests[AuthProvider];
-  userData: RegisterForm;
+  userData: RegisterFormData;
 }
 
 const auth = getAuth(firebaseApp);
 
 class AuthServiceClass {
   auth: Auth;
+
   authenticated: Promise<any>;
 
-  constructor(auth: Auth) {
-    this.auth = auth;
+  constructor(authProvider: Auth) {
+    this.auth = authProvider;
     this.authenticated = this.isAuthenticated();
   }
 
   // this allows us to wait for the initial auth-change event on page load
   async isAuthenticated(): Promise<unknown> {
-    return this.initializeAuth().then((user) => {
-      // @ts-ignore
-      return user && !user.isAnonymous;
-    });
+    return this.initializeAuth().then((user: any) => user && !user.isAnonymous);
   }
 
   async initializeAuth(): Promise<unknown> {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       // this adds a hook for the initial auth-change event
-      auth.onAuthStateChanged(user => {
-        resolve(user)
-      })
-    })
+      auth.onAuthStateChanged((user) => {
+        resolve(user);
+      });
+    });
   }
 
   public async userSignUp(register: UserRegister): Promise<User | void> {
     const { authProvider, registerRequest } = register;
 
     switch (authProvider) {
-      case AuthProvider.Email:
+      case AuthProvider.Email: {
         const { email, password } = registerRequest as AuthProviderRequests[AuthProvider.Email];
         try {
           const { user } = await createUserWithEmailAndPassword(auth, email, password);
           return user;
         } catch (error) {
           // TODO: Custom error handling
+          console.error(error);
           throw error;
         }
 
-      // TODO: Add other auth providers
-
+        // TODO: Add other auth providers
+      }
       default:
         console.error('AuthProvider not supported');
     }
@@ -114,18 +122,19 @@ class AuthServiceClass {
     const { authProvider, loginRequest } = login;
 
     switch (authProvider) {
-      case AuthProvider.Email:
+      case AuthProvider.Email: {
         const { email, password } = loginRequest as AuthProviderRequests[AuthProvider.Email];
         try {
           const { user } = await signInWithEmailAndPassword(auth, email, password);
           return user;
         } catch (error) {
           // TODO: Custom error handling
+          console.error(error);
           throw error;
         }
 
-      // TODO: Add other auth providers
-
+        // TODO: Add other auth providers
+      }
       default:
         console.error('AuthProvider not supported');
     }
@@ -135,7 +144,7 @@ class AuthServiceClass {
     await auth.signOut();
     updateLocalStoragePreferences();
   }
-};
+}
 
 const AuthService = new AuthServiceClass(auth);
 

@@ -1,12 +1,22 @@
 import { defineStore } from 'pinia';
+import { onAuthStateChanged } from 'firebase/auth';
 import router, { RouteNames } from '@/router/app-router';
 import AuthService from '@/services/auth/auth-service';
 
-import { onAuthStateChanged } from 'firebase/auth';
-import { addUser, updateUserPreferences, getUserData } from '@/services/db/user-service';
-import { User, RegisterUserRequest, UpdatePreferencesRequest, UserPreferences } from '@/models/user-model';
+import {
+  addUser,
+  setUserPreferences,
+  getUserData
+} from '@/services/user/user-service';
+import {
+  User,
+  RegisterUserRequest,
+  UpdatePreferencesRequest,
+  UserPreferences
+} from '@/models/user-model';
 
 import type { UserLogin, UserRegister } from '@/services/auth/auth-service';
+
 export interface LoginRequest {
   authProvider: string;
   email: string;
@@ -19,34 +29,33 @@ interface UserState {
   user: User | null;
 }
 
-export const getLocalStoragePreferences = (): UserPreferences | null => {
-  const local = localStorage.getItem('preferences');
-  if (local) {
-    return JSON.parse(local);
-  } else {
-    return null;
+export const getLocalStoragePreferences = (): UserPreferences => {
+  const local = localStorage.getItem('preferences') as string;
+  if (!local) {
+    localStorage.setItem('preferences', JSON.stringify({ darkMode: false }));
   }
+  return JSON.parse(localStorage.getItem('preferences') as string);
 };
 
-export const updateLocalStoragePreferences = (preferences?: UserPreferences): void => {
+export const updateLocalStoragePreferences = (
+  preferences?: UserPreferences
+): void => {
   if (preferences) {
     localStorage.setItem('preferences', JSON.stringify(preferences));
-  } else {
-    localStorage.removeItem('preferences');
   }
-}
+};
 
 export const UserStore = defineStore({
   id: 'user',
   state: (): UserState => ({
     loading: false,
     uid: null,
-    user: null,
+    user: null
   }),
   getters: {
-    darkMode: (state): boolean => {
-      return state.user ? state.user.preferences.darkMode : false;
-    }
+    darkMode: (state): boolean => (
+      state.user ? state.user.preferences.darkMode : getLocalStoragePreferences().darkMode
+    )
   },
   actions: {
     // Binds user data to store instance after auth success
@@ -54,7 +63,10 @@ export const UserStore = defineStore({
       await onAuthStateChanged(AuthService.auth, async (user) => {
         if (user) {
           const { uid } = user;
-          if (uid) { console.log('User is logged in and user data already loaded'); return; }
+          if (uid) {
+            console.log('User is logged in and user data already loaded');
+            return;
+          }
           try {
             console.log('User is logged in, loading user data');
             await this.getUser(uid);
@@ -72,24 +84,22 @@ export const UserStore = defineStore({
         const user = await getUserData(uid);
         this.uid = uid;
         this.user = user as User;
-        this.loading = false;
         console.log('User info from db loaded');
       } catch (error) {
-        this.loading = false;
         console.error(error);
       }
+      this.loading = false;
     },
-    async modifyUserPreferences(request: UpdatePreferencesRequest): Promise<void> {
+    async saveUserPreferences(
+      request: UpdatePreferencesRequest
+    ): Promise<void> {
       this.loading = true;
-
       try {
-        await updateUserPreferences(request);
-        this.loading = false;
-        router.go(0);  // resets the route to refresh page, load local storage changes, and trigger beforeEnter route hooks
+        await setUserPreferences(request);
       } catch (error) {
-        this.loading = false;
         console.error(error);
       }
+      this.loading = false;
     },
     async register(request: UserRegister): Promise<void> {
       this.loading = true;
@@ -107,7 +117,7 @@ export const UserStore = defineStore({
         // Firestore User Creation
         const { uid } = user;
         const newUser = new User({ uid, ...userData } as RegisterUserRequest);
-        await addUser(JSON.parse(JSON.stringify((newUser))));
+        await addUser(JSON.parse(JSON.stringify(newUser)));
 
         if (user && user.uid) {
           await this.getUser(user.uid);
@@ -142,17 +152,21 @@ export const UserStore = defineStore({
         this.uid = null;
         this.user = null;
         this.loading = false;
-        router.push({ name: RouteNames.LandingPage });
+        router.push({ name: RouteNames.SignInRegisterPage });
       } catch (error) {
         this.loading = false;
         console.error(error);
       }
     },
-    updateLocalPreferences(preferences: UserPreferences): void {
+    async updateUserPreferences(preferences: UserPreferences): Promise<void> {
       updateLocalStoragePreferences(preferences);
-      if (this.user) {
-        this.user.preferences = preferences;
+      if (this.user && this.uid) {
+        await this.saveUserPreferences({
+          uid: this.uid,
+          preferences
+        });
+        await this.getUser(this.uid);
       }
-    },
-  },
+    }
+  }
 });

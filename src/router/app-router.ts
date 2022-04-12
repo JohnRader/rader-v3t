@@ -9,10 +9,10 @@ export enum RouteNames {
   SignInRegisterPage = 'signInRegisterPage',
 }
 
-const HomePage = async () => await import('@/pages/Home.vue');
-const AccountPage = async () => await import('@/pages/Account.vue');
-const LandingPage = async () => await import('@/pages/LandingPage.vue');
-const SignInRegisterPage = async () => await import('@/pages/SignInRegister.vue');
+const HomePage = async () => import('@/pages/Home.vue');
+const AccountPage = async () => import('@/pages/Account.vue');
+const LandingPage = async () => import('@/pages/LandingPage.vue');
+const SignInRegisterPage = async () => import('@/pages/SignInRegister.vue');
 
 const router = createRouter({
   history: createWebHistory(),

@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import { VContainer, VForm, VTextField, VBtn, VAlert, VProgressCircular } from 'vuetify/lib/components/index';
+import {
+  VContainer, VForm, VTextField, VBtn, VAlert, VProgressCircular
+} from 'vuetify/lib/components/index';
 import { UserStore } from '@/stores/user-store';
 import { UserLogin, AuthProvider, AuthProviderRequests } from '@/services/auth/auth-service';
 
-let store = UserStore();
+const store = UserStore();
 
-const isLoading = computed(() => {
-  return store.$state.loading;
-});
+const isLoading = computed(() => store.$state.loading);
 
 const { value: selectedAuthProvider } = ref<AuthProvider>(AuthProvider.Email);
 
@@ -50,20 +50,31 @@ const userLogin = async (): Promise<void> => {
     errorMessage.value = error.message;
     console.error(error);
   }
-}
+};
 
 const clearAlert = (): void => {
   errorMessage.value = '';
-}
+};
 </script>
 
 <template>
   <VContainer>
-    <h1 class="d-flex pb-4 justify-center">Sign in</h1>
-    <VAlert v-if="errorMessage" class="mb-4" :type="'error'" :density="'compact'">
-      <template #text>{{ errorMessage }}</template>
+    <h1 class="d-flex pb-4 justify-center">
+      Sign in
+    </h1>
+    <VAlert
+      v-if="errorMessage"
+      class="mb-4"
+      :type="'error'"
+      :density="'compact'"
+    >
+      <template #text>
+        {{ errorMessage }}
+      </template>
       <template #close>
-        <VIcon @click="clearAlert">mdi-close</VIcon>
+        <VIcon @click="clearAlert">
+          mdi-close
+        </VIcon>
       </template>
     </VAlert>
     <VForm @submit="userLogin">
@@ -90,7 +101,12 @@ const clearAlert = (): void => {
       >
         <template #default>
           <span v-if="!isLoading">Sign In</span>
-          <VProgressCircular v-if="isLoading" class="ml-2" :indeterminate="isLoading" :size="24" />
+          <VProgressCircular
+            v-if="isLoading"
+            class="ml-2"
+            :indeterminate="isLoading"
+            :size="24"
+          />
         </template>
       </VBtn>
     </VForm>

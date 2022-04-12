@@ -7,7 +7,10 @@ import RegisterForm from '@/components/login-register/RegisterForm.vue';
 
 <template>
   <VContainer class="d-flex justify-center">
-    <VCard class="px-2" :width="400">
+    <VCard
+      class="px-2"
+      :width="400"
+    >
       <LoginForm />
       <div class="d-flex px-4 justify-space-between align-center">
         <VDivider />

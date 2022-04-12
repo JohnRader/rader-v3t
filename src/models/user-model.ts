@@ -7,21 +7,21 @@ interface BaseUserRequest {
 }
 
 export interface RegisterUserRequest extends BaseUserRequest {
-  displayName: string,
-  firstName: string,
-  lastName: string,
-  email: string,
-  password: string,
-  phoneNumber: string,
+  displayName: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  phoneNumber: string;
 }
 
 export interface ModifyUserRequest extends BaseUserRequest {
-  displayName: string,
-  firstName: string,
-  lastName: string,
-  email: string,
-  phoneNumber: string,
-};
+  displayName: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+}
 
 export interface UpdatePreferencesRequest extends BaseUserRequest {
   preferences: UserPreferences;
@@ -38,7 +38,9 @@ export interface UserInfo {
 
 export class User {
   uid: string;
+
   userInfo: UserInfo;
+
   preferences: UserPreferences;
 
   constructor(userInfo: RegisterUserRequest) {
@@ -49,10 +51,10 @@ export class User {
       lastName: userInfo.lastName,
       displayName: userInfo.displayName,
       phoneNumber: userInfo.phoneNumber,
-      photoURL: '',
+      photoURL: ''
     };
     this.preferences = {
-      darkMode: false,
+      darkMode: false
     };
   }
 }

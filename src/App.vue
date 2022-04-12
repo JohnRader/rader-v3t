@@ -1,23 +1,42 @@
 <script setup lang="ts">
-import { VApp, VMain } from 'vuetify/lib/components/index';
-import { computed } from 'vue';
-import { UserStore } from '@/stores/user-store';
-import SiteHeader from './components/SiteHeader.vue';
-
+import {
+  VApp,
+  VMain,
+} from 'vuetify/lib/components/index';
+import { computed, ref } from 'vue';
 import { RouterView } from 'vue-router';
+import { getLocalStoragePreferences } from '@/stores/user-store';
+import SiteHeader from './components/SiteHeader.vue';
+import SettingsDrawer from './components/SettingsDrawer.vue';
 
-let store = UserStore();
+const drawer = ref(false);
 
-const theme = computed(() => {
-  return store.$state.user?.preferences.darkMode ? 'dark' : 'light';
-});
+const toggleDrawer = (): void => {
+  drawer.value = !drawer.value;
+};
+
+const darkTheme = ref<boolean>(getLocalStoragePreferences().darkMode);
+
+const theme = computed(() => (darkTheme.value ? 'dark' : 'light'));
+
+const changeTheme = () => {
+  darkTheme.value = !darkTheme.value;
+};
 </script>
 
 <template>
-  <VApp :theme="theme">
-    <SiteHeader />
+  <VApp
+    class="app"
+    :theme="theme"
+  >
+    <SiteHeader @drawer-click="toggleDrawer" />
     <VMain>
       <RouterView />
     </VMain>
+    <SettingsDrawer
+      :drawer="drawer"
+      @toggle-drawer="toggleDrawer"
+      @change-theme="changeTheme"
+    />
   </VApp>
 </template>

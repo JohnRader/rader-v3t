@@ -1,19 +1,14 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import { VContainer, VForm, VTextField, VBtn, VAlert, VIcon, VProgressCircular } from 'vuetify/lib/components/index';
+import {
+  VContainer, VForm, VTextField, VBtn, VAlert, VIcon, VProgressCircular
+} from 'vuetify/lib/components/index';
 import { UserStore } from '@/stores/user-store';
-import { UserRegister, AuthProvider, AuthProviderRequests } from '@/services/auth/auth-service';
+import {
+  UserRegister, AuthProvider, AuthProviderRequests, RegisterFormData
+} from '@/services/auth/auth-service';
 
-export interface RegisterForm {
-  displayName: string,
-  firstName: string,
-  lastName: string,
-  email: string,
-  password: string,
-  phoneNumber: string,
-}
-
-const formValues = ref<RegisterForm>({
+const formValues = ref<RegisterFormData>({
   displayName: '',
   firstName: '',
   lastName: '',
@@ -63,11 +58,11 @@ const registerPayload = computed((): UserRegister => {
   }
 });
 
-let store = UserStore();
+const store = UserStore();
 
-const isLoading = computed(() => {
-  return store.$state.loading;
-});
+const isLoading = computed(() => store.$state.loading);
+
+const errorMessage = ref('');
 
 const userRegister = async (): Promise<void> => {
   const { authProvider, registerRequest, userData } = registerPayload.value;
@@ -78,22 +73,31 @@ const userRegister = async (): Promise<void> => {
     errorMessage.value = error.message;
     console.error(error);
   }
-}
-
-const errorMessage = ref('');
+};
 
 const clearAlert = (): void => {
   errorMessage.value = '';
-}
+};
 </script>
 
 <template>
   <VContainer>
-    <h1 class="d-flex pb-4 justify-center">Register</h1>
-    <VAlert v-if="errorMessage" class="mb-4" :type="'error'" :density="'compact'">
-      <template #text>{{ errorMessage }}</template>
+    <h1 class="d-flex pb-4 justify-center">
+      Register
+    </h1>
+    <VAlert
+      v-if="errorMessage"
+      class="mb-4"
+      :type="'error'"
+      :density="'compact'"
+    >
+      <template #text>
+        {{ errorMessage }}
+      </template>
       <template #close>
-        <VIcon @click="clearAlert">mdi-close</VIcon>
+        <VIcon @click="clearAlert">
+          mdi-close
+        </VIcon>
       </template>
     </VAlert>
     <VForm @submit="userRegister">
@@ -145,7 +149,12 @@ const clearAlert = (): void => {
       >
         <template #default>
           <span v-if="!isLoading">Register</span>
-          <VProgressCircular v-if="isLoading" class="ml-2" :indeterminate="isLoading" :size="24" />
+          <VProgressCircular
+            v-if="isLoading"
+            class="ml-2"
+            :indeterminate="isLoading"
+            :size="24"
+          />
         </template>
       </VBtn>
     </VForm>
