@@ -20,7 +20,7 @@ export default ({ mode }) => {
     publicDir: 'assets',
     envDir: '/',
     // TODO: rethink this and/or move object to separate config file
-    // Also doing this exposes the env variables to the client (prob not a good idea to do this for the api keys and such)
+    // Also doing this exposes the env variables to the client
     define: {
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       'process.env.PORT': JSON.stringify(process.env.PORT),
@@ -40,11 +40,12 @@ export default ({ mode }) => {
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: `@use '${pathSrc}/styles/sass/_globals';`,
+          additionalData: `
+          @use '${pathSrc}/styles/sass/_variables' as *;
+          @use '${pathSrc}/styles/sass/_globals';
+        `,
         },
       },
     },
   });
-}
-
-
+};

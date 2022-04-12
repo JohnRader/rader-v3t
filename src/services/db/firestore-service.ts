@@ -1,10 +1,8 @@
 import {
   Firestore, getFirestore, collection, getDocs, query, where, doc, updateDoc, addDoc,
 } from 'firebase/firestore';
-import firebaseApp from '@/services/firebase';
-
 import type { DocumentReference, DocumentData } from 'firebase/firestore';
-
+import firebaseApp from '@/services/firebase';
 
 // TODO: Move type definitions to separate file
 export interface GetDocumentRequest {
@@ -29,11 +27,13 @@ const db = getFirestore(firebaseApp);
 class FirestoreServiceClass {
   db: Firestore;
 
-  constructor(db: Firestore) {
-    this.db = db;
+  constructor(dbProvider: Firestore) {
+    this.db = dbProvider;
   }
 
-  public async getDocumentReference(request: GetDocumentRequest): Promise<DocumentReference<DocumentData> | undefined> {
+  public async getDocumentReference(
+    request: GetDocumentRequest
+  ): Promise<DocumentReference<DocumentData> | undefined> {
     try {
       const collectionRef = await collection(db, request.collectionId);
       const { docs } = await getDocs(query(collectionRef, where(request.indentiferField, '==', request.indentiferValue)));
@@ -45,6 +45,7 @@ class FirestoreServiceClass {
 
       console.log(`Document reference in ${request.collectionId} not found`);
     } catch (error) {
+      console.error(error);
       throw error;
     }
   }

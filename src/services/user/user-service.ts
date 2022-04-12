@@ -16,7 +16,7 @@ const getUserReference = async (uid: string): Promise<DocumentReference<Document
   } catch (error) {
     console.error(error);
   }
-}
+};
 
 export const getUserData = async (uid: string): Promise<User | void> => {
   try {
@@ -30,7 +30,7 @@ export const getUserData = async (uid: string): Promise<User | void> => {
   } catch (error) {
     console.error(error);
   }
-}
+};
 
 export const addUser = async (user: User): Promise<void> => {
   try {
@@ -53,9 +53,9 @@ export const addUser = async (user: User): Promise<void> => {
   } catch (error) {
     console.error(error);
   }
-}
+};
 
-export const updateUserPreferences = async (request: UpdatePreferencesRequest) => {
+export const setUserPreferences = async (request: UpdatePreferencesRequest) => {
   try {
     const userRef = await getUserReference(request.uid);
     if (userRef) {
@@ -64,10 +64,10 @@ export const updateUserPreferences = async (request: UpdatePreferencesRequest) =
         field: 'preferences',
         value: request.preferences,
       });
-      localStorage.setItem('preferences', JSON.stringify(request.preferences));
+      // localStorage.setItem('preferences', JSON.stringify(request.preferences));
       console.log('User preferences updated...');
     }
   } catch (error) {
     console.error(error);
   }
-}
+};
